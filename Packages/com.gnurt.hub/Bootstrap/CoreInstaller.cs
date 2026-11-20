@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
@@ -23,8 +27,43 @@ namespace Gnurt.Hub.Bootstrap
         const string CoreTagPrefix = "core/v";
         const string CorePath = "/Packages/com.gnurt.core";
         const string TriedKey = "Gnurt.Hub.CoreInstallTried";
+        const string RestartAskedKey = "Gnurt.Hub.RestartAsked";
 
-        static CoreInstaller() => EditorApplication.delayCall += Check;
+        // Tên các assembly vừa compile trong lượt hiện tại.
+        static readonly HashSet<string> CompiledThisRound = new HashSet<string>();
+
+        static CoreInstaller()
+        {
+            EditorApplication.delayCall += Check;
+            CompilationPipeline.compilationStarted += _ => CompiledThisRound.Clear();
+            CompilationPipeline.assemblyCompilationFinished += (path, _) => CompiledThisRound.Add(Path.GetFileNameWithoutExtension(path));
+            CompilationPipeline.compilationFinished += _ => CheckCoreCompiled();
+        }
+
+        /// <summary>
+        /// Unity 6000.3 (đã gặp khi chạy batchmode): package git thêm vào giữa phiên có thể không được compile cho tới khi
+        /// mở lại Unity. Dấu hiệu: lượt compile có Hub mà không có core, dù core đã nằm trong project. Khi đó hỏi mở lại project.
+        /// Unity bình thường compile được core thì điều kiện này không bao giờ đúng.
+        /// </summary>
+        static void CheckCoreCompiled()
+        {
+            bool stuck = CompiledThisRound.Contains("Gnurt.Hub.Editor")
+                && !CompiledThisRound.Contains("Gnurt.Core")
+                && !AppDomain.CurrentDomain.GetAssemblies().Any(a => a.GetName().Name == "Gnurt.Core")
+                && PackageInfo.FindForAssetPath("Packages/" + CoreName) != null;
+            if (!stuck || SessionState.GetBool(RestartAskedKey, false)) return;
+            SessionState.SetBool(RestartAskedKey, true);
+
+            const string message = "Gnurt Core đã được cài nhưng Unity chưa nạp nó trong phiên này. Mở lại project là xong.\n\n"
+                + "Gnurt Core is installed but Unity has not loaded it in this session. Reopening the project fixes it.";
+            if (Application.isBatchMode)
+            {
+                Debug.LogWarning("[Gnurt][Hub] " + message.Replace("\n", " "));
+                return;
+            }
+            if (EditorUtility.DisplayDialog("Gnurt Hub", message, "Mở lại / Reopen", "Để sau / Later"))
+                EditorApplication.OpenProject(Directory.GetCurrentDirectory());
+        }
 
         static void Check()
         {

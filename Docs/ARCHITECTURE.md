@@ -105,6 +105,10 @@ Cả hai đều public. Các package có thu phí nằm ở repo riêng (xem m�
 
 **Bootstrap:** khi Unity mở mà chưa có core (hoặc core cũ hơn bản Hub cần), tự `Client.Add` core từ cùng repo với Hub. Hub cài bằng tag `hub/vX` thì core lấy tag `core/v{RequiredCoreVersion}`; Hub cài bằng nhánh/commit thì core lấy đúng nhánh/commit đó. Chưa có core thì menu **Gnurt > Hub** là nút cài core.
 
+**Lỗi đã biết của Unity 6000.3:** khi chạy batchmode, package git thêm vào **giữa phiên** (bằng `Client.Add`) không được compile cho tới khi mở lại Unity. Package local (`file:`) không bị, Unity 2022.3 không bị. Đã thử `RequestScriptCompilation`, `AssetDatabase.Refresh(ForceUpdate)`, `Client.Resolve`, `ImportAsset` đều không gỡ được; mở lại project thì hết. Unity mở cửa sổ thường chưa kiểm được. Cách xử lý:
+- Bootstrap theo dõi các lượt compile. Lượt nào có Hub mà không có core (dù core đã nằm trong project) thì hỏi người dùng mở lại project; batchmode thì chỉ ghi warning. Unity compile bình thường thì không bao giờ hỏi.
+- `Tools/e2e_hub.sh` chạy Unity hai lần: lần đầu để bootstrap thêm core, lần sau mở lại để kiểm tra.
+
 **Kiểm tra:** `Tools/compile_check.sh --tests` (logic, cả 2022.3 và 6000.3) và `Tools/e2e_hub.sh` (cài thật từ GitHub vào project trống, kiểm tra bootstrap, catalog, tag, chặn gỡ, chuyển local rồi về git).
 
 **Hub không làm:** không quản lý SDK bên thứ ba (MAX, AppsFlyer…), không cấu hình bên trong extension.

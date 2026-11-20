@@ -7,9 +7,9 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-// Kiểm tra Hub sau khi được cài thật từ git, trong project trống. Chỉ chạy trong batchmode của Tools/e2e_hub.sh.
-// Giữa chừng Unity reload domain vài lần (cài core, đổi nguồn core), nên tiến độ được lưu trong SessionState.
-// Assembly này chỉ compile khi project đã có cả Hub và core, tức là sau khi bootstrap cài core xong.
+// Kiểm tra Hub sau khi được cài thật từ git, trong project trống. Chỉ chạy ở lần "check" của Tools/e2e_hub.sh
+// (lần chạy trước đó đã để bootstrap thêm core). Giữa chừng Unity reload domain khi đổi nguồn core,
+// nên tiến độ được lưu trong SessionState. Assembly này chỉ compile khi project đã có cả Hub và core.
 [InitializeOnLoad]
 static class GnurtE2EChecks
 {
@@ -18,11 +18,12 @@ static class GnurtE2EChecks
 
     static string Revision => Environment.GetEnvironmentVariable("GNURT_E2E_REVISION") ?? "dev/0.1.0";
     static string ReposRoot => Environment.GetEnvironmentVariable("GNURT_E2E_REPOS") ?? "D:/UnityProject";
+    static string Phase => Environment.GetEnvironmentVariable("GNURT_E2E_PHASE") ?? "check";
     static string ResultPath => Path.Combine(Application.dataPath, "..", "e2e-result.txt");
 
     static GnurtE2EChecks()
     {
-        if (Application.isBatchMode) EditorApplication.delayCall += Run;
+        if (Application.isBatchMode && Phase == "check") EditorApplication.delayCall += Run;
     }
 
     static async void Run()
@@ -50,7 +51,7 @@ static class GnurtE2EChecks
         Expect(core != null, "bootstrap chưa cài com.gnurt.core");
         Expect(core.source == PackageSource.Git, $"core phải cài từ git, đang là {core.source}");
         Expect(core.packageId.EndsWith("#" + Revision), $"core phải cùng nhánh với Hub: {core.packageId}");
-        Pass($"Bootstrap tự cài core: {core.packageId}");
+        Pass("Mở lại project: Hub và core từ git đều compile được");
 
         var hub = HubService.Instance;
         await hub.RefreshAsync();

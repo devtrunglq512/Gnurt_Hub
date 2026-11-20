@@ -21,6 +21,8 @@ https://github.com/devtrunglq512/Gnurt_Hub.git?path=/Packages/com.gnurt.hub#hub/
 
 Hub sẽ tự cài `com.gnurt.core`. Sau đó mở **Gnurt > Hub** trên thanh menu.
 
+> Unity 6000.3: đã gặp trường hợp Unity chưa nạp package git vừa thêm cho tới khi mở lại project. Nếu Hub hỏi "Mở lại project", hoặc chưa thấy menu **Gnurt**, hãy mở lại project là xong.
+
 > Bản 0.1.0 đang phát triển trên nhánh `dev/0.1.0`, chưa có tag phát hành. Để thử bản này, thay `#hub/v0.1.0` bằng `#dev/0.1.0`.
 
 ## Dùng Hub
