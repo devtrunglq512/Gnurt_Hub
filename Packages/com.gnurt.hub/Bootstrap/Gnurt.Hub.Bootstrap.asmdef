@@ -11,6 +11,12 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.gnurt.core",
+            "expression": "0.1.0",
+            "define": "GNURT_CORE"
+        }
+    ],
     "noEngineReferences": false
 }

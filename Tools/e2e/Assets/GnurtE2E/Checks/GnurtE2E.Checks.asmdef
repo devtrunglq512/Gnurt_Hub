@@ -1,0 +1,33 @@
+{
+    "name": "GnurtE2E.Checks",
+    "references": [
+        "Gnurt.Core",
+        "Gnurt.Core.Editor",
+        "Gnurt.Hub.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "E2E_HAS_HUB",
+        "E2E_HAS_CORE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.gnurt.hub",
+            "expression": "0.0.1",
+            "define": "E2E_HAS_HUB"
+        },
+        {
+            "name": "com.gnurt.core",
+            "expression": "0.0.1",
+            "define": "E2E_HAS_CORE"
+        }
+    ],
+    "noEngineReferences": false
+}

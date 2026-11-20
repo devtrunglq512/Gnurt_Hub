@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "name": "com.gnurt.core",
+      "displayName": "Gnurt Core",
+      "descriptionEn": "Shared foundation for every Gnurt package: logging, events, services, singletons and the Editor UI kit.",
+      "descriptionVi": "Nền chung cho mọi package Gnurt: log, sự kiện, service, singleton và bộ giao diện Editor.",
+      "repo": "https://github.com/devtrunglq512/Gnurt_Hub.git",
+      "path": "/Packages/com.gnurt.core",
+      "tagPrefix": "core/",
+      "dependencies": [],
+      "minUnity": "2022.3",
+      "planned": false,
+      "licensed": false
+    },
+    {
+      "name": "com.gnurt.hub",
+      "displayName": "Gnurt Hub",
+      "descriptionEn": "This window: installs, updates and removes Gnurt packages.",
+      "descriptionVi": "Chính window này: cài, cập nhật và gỡ các package Gnurt.",
+      "repo": "https://github.com/devtrunglq512/Gnurt_Hub.git",
+      "path": "/Packages/com.gnurt.hub",
+      "tagPrefix": "hub/",
+      "dependencies": ["com.gnurt.core"],
+      "minUnity": "2022.3",
+      "planned": false,
+      "licensed": false
+    },
+    {
+      "name": "com.gnurt.logicmap",
+      "displayName": "LogicMap",
+      "descriptionEn": "In development.",
+      "descriptionVi": "Đang phát triển.",
+      "repo": "https://github.com/devtrunglq512/Gnurt_LogicMap.git",
+      "path": "/Packages/com.gnurt.logicmap",
+      "tagPrefix": "",
+      "dependencies": ["com.gnurt.core"],
+      "minUnity": "2022.3",
+      "planned": true,
+      "licensed": false
+    },
+    {
+      "name": "com.gnurt.firebase-manager",
+      "displayName": "Firebase Manager",
+      "descriptionEn": "Editor tool for everyday Firebase tasks. Needs a license key.",
+      "descriptionVi": "Tool Editor cho các việc Firebase thường ngày. Cần key để dùng.",
+      "repo": "",
+      "path": "",
+      "tagPrefix": "",
+      "dependencies": ["com.gnurt.core"],
+      "minUnity": "2022.3",
+      "planned": true,
+      "licensed": true
+    }
+  ]
+}

@@ -79,18 +79,34 @@ namespace Gnurt.Editor
         /// Liệt kê tag version của repo git, mới nhất trước. Git chạy ở thread nền.
         /// Repo cần đăng nhập mà máy chưa có quyền thì báo lỗi ngay, không treo chờ nhập mật khẩu.
         /// </summary>
-        public static async Task<IReadOnlyList<string>> ListVersionTagsAsync(string repoUrl, string tagPrefix = "")
+        public static async Task<IReadOnlyList<string>> ListVersionTagsAsync(string repoUrl, string tagPrefix = "") =>
+            VersionTags.FilterAndSort(await ListTagsAsync(repoUrl), tagPrefix);
+
+        /// <summary>Mọi tag của repo git (chưa lọc). Dùng khi cần lọc cho nhiều package cùng repo mà chỉ hỏi git một lần.</summary>
+        public static async Task<IReadOnlyList<string>> ListTagsAsync(string repoUrl)
         {
             if (string.IsNullOrWhiteSpace(repoUrl) || repoUrl.Contains("\""))
                 throw new ArgumentException("URL repo không hợp lệ", nameof(repoUrl));
 
             string output = await Task.Run(() => RunGit($"ls-remote --tags --refs \"{repoUrl}\"", 30));
-            var tags = output
+            return output
                 .Split('\n')
                 .Select(line => line.Trim())
                 .Where(line => line.Length > 0)
-                .Select(line => line.Substring(line.LastIndexOf('\t') + 1).Replace("refs/tags/", ""));
-            return VersionTags.FilterAndSort(tags, tagPrefix);
+                .Select(line => line.Substring(line.LastIndexOf('\t') + 1).Replace("refs/tags/", ""))
+                .ToList();
+        }
+
+        /// <summary>Nguồn git (URL, thư mục, tag/nhánh) của package cài từ git. false nếu không cài từ git.</summary>
+        public static bool TryGetGitSource(PackageInfo package, out GitSource source)
+        {
+            source = default;
+            if (package == null || package.source != PackageSource.Git) return false;
+
+            // packageId có dạng "tên@url?path=...#rev"
+            string id = package.packageId;
+            int at = id.IndexOf('@');
+            return at >= 0 && GitSource.TryParse(id.Substring(at + 1), out source);
         }
 
         // Chạy lệnh git và trả về stdout. Lỗi hoặc quá thời gian thì ném exception.

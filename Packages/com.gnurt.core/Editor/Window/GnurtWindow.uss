@@ -182,6 +182,40 @@
 .gnurt-card__subtitle { margin-top: 3px; margin-bottom: 8px; color: var(--gn-text-muted); white-space: normal; padding: 0; font-size: 13px; }
 
 .gnurt-row { flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.gnurt-inline { flex-direction: row; flex-wrap: wrap; align-items: center; }
+.gnurt-media { flex-direction: row; align-items: flex-start; }
+.gnurt-media__body { flex-grow: 1; flex-shrink: 1; margin-left: 12px; }
+
+/* ---------- Thông báo ---------- */
+
+.gnurt-note {
+    margin: 0 0 12px 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left-width: 3px;
+    border-left-color: var(--gn-text-muted);
+    background-color: var(--gn-neutral-soft);
+}
+
+.gnurt-note__text { color: var(--gn-text); white-space: normal; padding: 0; font-size: 13px; }
+.gnurt-note--accent { border-left-color: var(--gn-accent); background-color: var(--gn-accent-soft); }
+.gnurt-note--success { border-left-color: var(--gn-success); background-color: var(--gn-success-soft); }
+.gnurt-note--warning { border-left-color: var(--gn-warning); background-color: var(--gn-warning-soft); }
+.gnurt-note--danger { border-left-color: var(--gn-danger); background-color: var(--gn-danger-soft); }
+
+/* Nút mở menu (chọn version...): viền mảnh, nền như card. */
+.gnurt-menu-button {
+    height: 28px;
+    margin: 0 6px 0 0;
+    padding: 0 10px;
+    border-width: 1px;
+    border-color: var(--gn-border);
+    border-radius: 5px;
+    background-color: var(--gn-surface);
+}
+
+.gnurt-menu-button:hover { background-color: var(--gn-hover); }
+.gnurt-menu-button .unity-text-element { font-size: 13px; color: var(--gn-text); }
 .gnurt-columns { flex-direction: row; flex-wrap: wrap; margin: 0 -6px; }
 .gnurt-column { flex-grow: 1; flex-basis: 300px; margin: 0 6px 12px 6px; }
 

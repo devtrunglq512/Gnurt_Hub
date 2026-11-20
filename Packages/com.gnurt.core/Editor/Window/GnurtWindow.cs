@@ -121,6 +121,14 @@ namespace Gnurt.Editor
             Render(keepScroll: false);
         }
 
+        /// <summary>Vẽ lại cả window (header, sidebar, trang) nhưng giữ trang đang mở và vị trí cuộn.</summary>
+        public void RefreshAll()
+        {
+            var scroll = _content?.scrollOffset ?? Vector2.zero;
+            Rebuild();
+            _content?.schedule.Execute(() => _content.scrollOffset = scroll);
+        }
+
         /// <summary>Vẽ lại trang đang mở, giữ nguyên vị trí cuộn. Dùng khi dữ liệu của trang thay đổi.</summary>
         public void RefreshPage()
         {

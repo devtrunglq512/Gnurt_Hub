@@ -207,3 +207,6 @@ Packages/com.gnurt.*/**/*.so    -filter -diff -merge -text
 Packages/com.gnurt.*/**/*.aar   -filter -diff -merge -text
 Packages/com.gnurt.*/**/*.jar   -filter -diff -merge -text
 Packages/com.gnurt.*/**/*.bytes -filter -diff -merge -text
+
+# ---- Script bash: luôn giữ LF, kể cả trên Windows (CRLF làm bash báo lỗi) ----
+*.sh       text eol=lf

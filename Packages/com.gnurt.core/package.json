@@ -3,9 +3,12 @@
   "displayName": "Gnurt Core",
   "version": "0.1.0",
   "unity": "2022.3",
-  "description": "Shared foundation for every Gnurt package: patterns (EventBus, Services, Singleton, StateMachine), infrastructure (logging, main thread, storage) and an Editor UI kit.",
+  "description": "Shared foundation for every Gnurt package: patterns (EventBus, Services, Singleton), infrastructure (logging, main thread) and an Editor UI kit.",
   "author": {
     "name": "Gnurt"
   },
-  "dependencies": {}
+  "dependencies": {
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0"
+  }
 }

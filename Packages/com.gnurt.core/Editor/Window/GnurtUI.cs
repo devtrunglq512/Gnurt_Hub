@@ -108,8 +108,23 @@ namespace Gnurt.Editor
             return button;
         }
 
-        /// <summary>Xếp các phần tử thành hàng ngang.</summary>
+        /// <summary>Xếp các phần tử thành hàng ngang, cách phía trên một khoảng (hợp cho hàng nút).</summary>
         public static VisualElement Row(params VisualElement[] children) => Element("gnurt-row", children);
+
+        /// <summary>Xếp các phần tử thành hàng ngang sát nhau, không chừa khoảng (hợp cho tên kèm badge).</summary>
+        public static VisualElement Inline(params VisualElement[] children) => Element("gnurt-inline", children);
+
+        /// <summary>Hình bên trái, nội dung bên phải (kiểu thẻ package).</summary>
+        public static VisualElement Media(VisualElement leading, params VisualElement[] body) =>
+            Element("gnurt-media", leading, Element("gnurt-media__body", body));
+
+        /// <summary>Khung thông báo có vạch màu bên trái: lưu ý, cảnh báo, lỗi.</summary>
+        public static VisualElement Note(string text, BadgeKind kind = BadgeKind.Neutral)
+        {
+            var note = Element("gnurt-note", Text(text, "gnurt-note__text"));
+            note.AddToClassList("gnurt-note--" + kind.ToString().ToLowerInvariant());
+            return note;
+        }
 
         /// <summary>Chia cột; window hẹp thì các cột tự xuống dòng.</summary>
         public static VisualElement Columns(params VisualElement[] columns)

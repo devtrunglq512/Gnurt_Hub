@@ -91,14 +91,21 @@ Cả hai đều public. Các package có thu phí nằm ở repo riêng (xem m�
 | `Gnurt.Hub.Bootstrap` | Không có | Project chưa có `com.gnurt.core` thì tự thêm vào, nên người dùng chỉ phải dán **một** URL |
 | `Gnurt.Hub.Editor` | `Gnurt.Core`, `Gnurt.Core.Editor` | Chỉ compile khi project đã có core: `versionDefines` đặt `GNURT_CORE` khi có package `com.gnurt.core`, và `defineConstraints` yêu cầu `GNURT_CORE` |
 
-**Tính năng**
-- **Catalog JSON:** mỗi mục gồm tên package, git URL + `path` (hoặc nguồn license server), `dependsOn`, Unity tối thiểu. Lấy bản trên repo, có một bản dự phòng nằm sẵn trong package.
-- **Trạng thái:** `Client.List` cho biết version đang cài, nguồn (git/tgz/local/embedded), và có bản mới chưa.
-- **Danh sách version:** `git ls-remote --tags`, lọc theo tiền tố tag của từng package.
-- **Cài, update, gỡ:** gom bằng `Client.AddAndRemove`, kèm cả dependency, để chỉ resolve một lần.
-- **Dev mode:** chuyển một extension sang `file:../../Gnurt_X/Packages/...` rồi chuyển lại git.
-- Hub tự update chính nó.
+**Tính năng (đã làm ở Phase 2)**
+- **Catalog:** một file duy nhất `Packages/com.gnurt.hub/Editor/Catalog/catalog.json`. Mỗi mục gồm `name`, `displayName`, mô tả vi/en, `repo`, `path`, `tagPrefix`, `dependencies`, `minUnity`, `planned` (chưa phát hành), `licensed` (cần key, Phase 3). Thêm extension mới chỉ cần sửa file này.
+  - Hub tải bản mới nhất từ `raw.githubusercontent.com`: Hub bản dev đọc catalog trên đúng nhánh của nó, Hub bản phát hành đọc trên `main`. Không tải được thì dùng bản đã lưu ở `Library/Gnurt/HubCatalog.json`, cuối cùng là bản nằm sẵn trong package.
+- **Trạng thái:** `Client.List` cho biết version đang cài và nguồn (git, local, embedded); so với tag mới nhất để báo có bản mới.
+- **Danh sách version:** mỗi repo chỉ chạy `git ls-remote --tags` một lần, rồi lọc theo `tagPrefix` của từng package.
+- **Cài, update, gỡ:** dependency còn thiếu được cài kèm trong cùng một lần `Client.AddAndRemove`. Không cho gỡ package đang được package khác cần.
+- **Kênh cập nhật:** *Phát hành* cài tag mới nhất; *Dev* cài nhánh (mặc định là nhánh Hub đang dùng). Hub cài từ nhánh thì kênh Dev tự bật.
+- **Bản local:** thư mục chứa các repo (mặc định là thư mục cha của project). Package nào có repo ở đó thì có nút chuyển sang `file:` để sửa và thử ngay, rồi chuyển lại git. Cùng ổ đĩa thì đường dẫn tương đối, khác ổ thì tuyệt đối.
+- **Cài đặt riêng từng người:** lưu trong `UserSettings/EditorUserSettings.asset`, không commit.
+- Hub tự update chính nó (Hub cũng là một mục trong catalog).
 - **Kích hoạt license** (Phase 3).
+
+**Bootstrap:** khi Unity mở mà chưa có core (hoặc core cũ hơn bản Hub cần), tự `Client.Add` core từ cùng repo với Hub. Hub cài bằng tag `hub/vX` thì core lấy tag `core/v{RequiredCoreVersion}`; Hub cài bằng nhánh/commit thì core lấy đúng nhánh/commit đó. Chưa có core thì menu **Gnurt > Hub** là nút cài core.
+
+**Kiểm tra:** `Tools/compile_check.sh --tests` (logic, cả 2022.3 và 6000.3) và `Tools/e2e_hub.sh` (cài thật từ GitHub vào project trống, kiểm tra bootstrap, catalog, tag, chặn gỡ, chuyển local rồi về git).
 
 **Hub không làm:** không quản lý SDK bên thứ ba (MAX, AppsFlyer…), không cấu hình bên trong extension.
 
@@ -154,7 +161,7 @@ Ngoài ra Editor kiểm tra lại online định kỳ (ví dụ 7 ngày một l�
 |---|---|---|
 | 0 | Khung repo: project Unity, git + luật LFS, hai package, các asmdef, tài liệu này | ✅ |
 | 1 | Core bản tối thiểu: `GLog`, `MainThread`, `EventBus`, `Observable`, `Services`/`GnurtService`, `Singleton`, bộ UI Editor (`GnurtWindow`, `Loc`, `GnurtUI`), `PackageOps`, EditMode test, `Tools/compile_check.sh` | ✅ (chưa tag `core/v0.1.0`) |
-| 2 | Hub cho package miễn phí: Bootstrap cài core, catalog, cài/update/gỡ qua git, dev mode | |
+| 2 | Hub cho package miễn phí: Bootstrap cài core, catalog, cài/update/gỡ qua git, kênh phát hành/dev, bản local | ✅ (chưa tag `hub/v0.1.0`) |
 | 3 | Theo thứ tự: 3a server Cloudflare (D1 schema, API kích hoạt / quyền / tải file / admin) → 3b web admin → 3c Hub nhập key và cài tgz | |
 | 4 | FirebaseManager: service có key đầu tiên, build DLL, CI build tgz | |
 | 5 | SDK ads/analytics (repo Gnurt_Sdk) | |
