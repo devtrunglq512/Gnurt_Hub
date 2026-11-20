@@ -1,0 +1,11 @@
+{
+  "name": "com.gnurt.hub",
+  "displayName": "Gnurt Hub",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Installs, updates and licenses Gnurt packages from one window. Adds com.gnurt.core to the project on first run.",
+  "author": {
+    "name": "Gnurt"
+  },
+  "dependencies": {}
+}

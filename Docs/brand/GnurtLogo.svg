@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- Logo Gnurt: chữ G mở về phía ngôi sao (đích hoàn hảo). Nền và màu vàng sáng dần lên góc trên phải (thăng tiến). -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#6D5BF0"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#E08A0B"/>
+      <stop offset="1" stop-color="#FFE7A3"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  <path d="M161 78.8 A66 66 0 1 0 194 136 L136 136" fill="none" stroke="url(#gold)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M204 26 Q209 51 234 56 Q209 61 204 86 Q199 61 174 56 Q199 51 204 26 Z" fill="#FFE7A3"/>
+</svg>

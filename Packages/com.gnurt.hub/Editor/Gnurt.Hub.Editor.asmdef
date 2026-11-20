@@ -1,0 +1,27 @@
+{
+    "name": "Gnurt.Hub.Editor",
+    "rootNamespace": "Gnurt.Hub",
+    "references": [
+        "Gnurt.Core",
+        "Gnurt.Core.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "GNURT_CORE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.gnurt.core",
+            "expression": "0.1.0",
+            "define": "GNURT_CORE"
+        }
+    ],
+    "noEngineReferences": false
+}

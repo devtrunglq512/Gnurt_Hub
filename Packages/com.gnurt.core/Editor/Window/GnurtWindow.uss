@@ -1,0 +1,293 @@
+/* Style chung cho mọi GnurtWindow. Màu nhấn tím lấy từ nền logo, vàng lấy từ chữ G. */
+
+/* ---------- Bảng màu theo theme ---------- */
+
+.gnurt--dark {
+    --gn-bg: #1f1f1f;
+    --gn-surface: #282828;
+    --gn-surface-raised: #303030;
+    --gn-border: #3a3a3a;
+    --gn-text: #f4f4f4;
+    --gn-text-muted: #bdbdbd;
+    --gn-accent: #7c6cf2;
+    --gn-accent-hover: #9184f5;
+    --gn-accent-soft: rgba(124, 108, 242, 0.18);
+    --gn-accent-text: #b3a9ff;
+    --gn-gold: #f2b84b;
+    --gn-hover: rgba(255, 255, 255, 0.05);
+    --gn-success: #4cc764;
+    --gn-success-soft: rgba(76, 199, 100, 0.14);
+    --gn-warning: #e3a72f;
+    --gn-warning-soft: rgba(227, 167, 47, 0.15);
+    --gn-danger: #f0605a;
+    --gn-danger-soft: rgba(240, 96, 90, 0.15);
+    --gn-neutral-soft: rgba(255, 255, 255, 0.07);
+}
+
+.gnurt--light {
+    --gn-bg: #e9e9e9;
+    --gn-surface: #f6f6f6;
+    --gn-surface-raised: #ffffff;
+    --gn-border: #cfcfcf;
+    --gn-text: #111111;
+    --gn-text-muted: #4f4f4f;
+    --gn-accent: #5b4bd6;
+    --gn-accent-hover: #6d5ee0;
+    --gn-accent-soft: rgba(91, 75, 214, 0.12);
+    --gn-accent-text: #4b3bc4;
+    --gn-gold: #c98a1a;
+    --gn-hover: rgba(0, 0, 0, 0.05);
+    --gn-success: #1f8a3a;
+    --gn-success-soft: rgba(31, 138, 58, 0.12);
+    --gn-warning: #a86b00;
+    --gn-warning-soft: rgba(168, 107, 0, 0.12);
+    --gn-danger: #c0392b;
+    --gn-danger-soft: rgba(192, 57, 43, 0.12);
+    --gn-neutral-soft: rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Bố cục ---------- */
+
+.gnurt-root { flex-grow: 1; background-color: var(--gn-bg); color: var(--gn-text); }
+.gnurt-spacer { flex-grow: 1; }
+.gnurt-body { flex-grow: 1; flex-direction: row; }
+.gnurt-content { flex-grow: 1; }
+.gnurt-page { padding: 20px 24px 12px 24px; }
+
+/* ---------- Header ---------- */
+
+.gnurt-header {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 72px;
+    padding: 0 16px;
+    background-color: var(--gn-surface);
+}
+
+.gnurt-header__logo {
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.gnurt-header__title { font-size: 20px; -unity-font-style: bold; color: var(--gn-text); padding: 0; }
+.gnurt-header__subtitle { font-size: 12px; color: var(--gn-text-muted); padding: 0; margin-top: 2px; }
+.gnurt-header__controls { flex-direction: row; align-items: center; }
+.gnurt-header__controls > * { margin-left: 8px; }
+
+/* Đường kẻ vàng dưới header, cùng màu chữ G của logo. */
+.gnurt-accent-line { height: 2px; flex-shrink: 0; background-color: var(--gn-gold); }
+
+/* Công tắc EN | VI */
+.gnurt-segmented { flex-direction: row; padding: 2px; border-radius: 11px; background-color: var(--gn-neutral-soft); }
+
+.gnurt-segmented__option {
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    min-width: 28px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    color: var(--gn-text-muted);
+}
+
+.gnurt-segmented__option:hover { color: var(--gn-text); }
+
+.gnurt-segmented__option--selected,
+.gnurt-segmented__option--selected:hover { color: #ffffff; background-color: var(--gn-accent); }
+
+/* ---------- Sidebar ---------- */
+
+.gnurt-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    padding: 8px;
+    background-color: var(--gn-surface);
+    border-right-width: 1px;
+    border-right-color: var(--gn-border);
+}
+
+.gnurt-nav-group {
+    font-size: 11px;
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+    color: var(--gn-text-muted);
+    margin: 12px 0 4px 10px;
+    padding: 0;
+}
+
+.gnurt-nav-item {
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    margin: 1px 0;
+    padding-left: 10px;
+    padding-right: 8px;
+    border-radius: 6px;
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0);
+}
+
+.gnurt-nav-item:hover { background-color: var(--gn-hover); }
+
+.gnurt-nav-item--selected,
+.gnurt-nav-item--selected:hover { background-color: var(--gn-accent-soft); border-left-color: var(--gn-accent); }
+
+.gnurt-nav-item__label { color: var(--gn-text); padding: 0; font-size: 14px; }
+.gnurt-nav-item--selected .gnurt-nav-item__label { -unity-font-style: bold; }
+
+/* ---------- Footer ---------- */
+
+.gnurt-footer {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    height: 26px;
+    padding: 0 12px;
+    background-color: var(--gn-surface);
+    border-top-width: 1px;
+    border-top-color: var(--gn-border);
+}
+
+.gnurt-footer__text { font-size: 11px; color: var(--gn-text-muted); padding: 0; }
+
+/* ---------- Tên trang ---------- */
+
+.gnurt-page__header { margin-bottom: 16px; }
+.gnurt-page__title { font-size: 24px; -unity-font-style: bold; color: var(--gn-text); padding: 0; }
+.gnurt-page__subtitle { margin-top: 4px; color: var(--gn-text-muted); white-space: normal; padding: 0; font-size: 13px; }
+
+/* ---------- Chữ ---------- */
+
+.gnurt-text { color: var(--gn-text); white-space: normal; padding: 0; font-size: 13px; margin-bottom: 4px; }
+.gnurt-hint { color: var(--gn-text-muted); white-space: normal; padding: 0; font-size: 12px; }
+.gnurt-error { color: var(--gn-danger); white-space: normal; padding: 0; font-size: 13px; }
+.gnurt-section-title { font-size: 15px; -unity-font-style: bold; color: var(--gn-text); margin: 4px 0 8px 0; padding: 0; }
+
+/* ---------- Card ---------- */
+
+.gnurt-card {
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    background-color: var(--gn-surface-raised);
+    border-width: 1px;
+    border-color: var(--gn-border);
+    border-radius: 8px;
+}
+
+.gnurt-card__title { font-size: 15px; -unity-font-style: bold; color: var(--gn-text); padding: 0; }
+.gnurt-card__subtitle { margin-top: 3px; margin-bottom: 8px; color: var(--gn-text-muted); white-space: normal; padding: 0; font-size: 13px; }
+
+.gnurt-row { flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.gnurt-columns { flex-direction: row; flex-wrap: wrap; margin: 0 -6px; }
+.gnurt-column { flex-grow: 1; flex-basis: 300px; margin: 0 6px 12px 6px; }
+
+/* ---------- Ô số liệu ---------- */
+
+.gnurt-stats { flex-direction: row; flex-wrap: wrap; margin: 0 -6px; }
+
+.gnurt-stat {
+    flex-grow: 1;
+    flex-basis: 140px;
+    margin: 0 6px 12px 6px;
+    padding: 12px 14px;
+    background-color: var(--gn-surface-raised);
+    border-width: 1px;
+    border-color: var(--gn-border);
+    border-radius: 8px;
+}
+
+/* Chữ dài hơn ô thì cắt bằng dấu "…" thay vì tràn ra ngoài; rê chuột vào số liệu để xem đủ. */
+.gnurt-stat__label,
+.gnurt-stat__value,
+.gnurt-stat__hint { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.gnurt-stat__label { font-size: 10px; -unity-font-style: bold; letter-spacing: 1px; color: var(--gn-text-muted); padding: 0; }
+.gnurt-stat__value { margin-top: 6px; font-size: 22px; -unity-font-style: bold; color: var(--gn-text); padding: 0; }
+.gnurt-stat__hint { margin-top: 2px; font-size: 12px; color: var(--gn-text-muted); padding: 0; }
+
+/* ---------- Badge ---------- */
+
+.gnurt-badge {
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    padding: 2px 8px;
+    margin: 0 0 0 6px;
+    border-radius: 9px;
+}
+
+.gnurt-badge--neutral { color: var(--gn-text-muted); background-color: var(--gn-neutral-soft); }
+.gnurt-badge--success { color: var(--gn-success); background-color: var(--gn-success-soft); }
+.gnurt-badge--warning { color: var(--gn-warning); background-color: var(--gn-warning-soft); }
+.gnurt-badge--danger { color: var(--gn-danger); background-color: var(--gn-danger-soft); }
+.gnurt-badge--accent { color: var(--gn-accent-text); background-color: var(--gn-accent-soft); }
+
+/* ---------- Avatar ---------- */
+
+.gnurt-avatar {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.gnurt-avatar__text { font-size: 12px; -unity-font-style: bold; color: #ffffff; padding: 0; }
+
+/* ---------- Nút ---------- */
+
+.gnurt-button { height: 28px; margin: 0 6px 0 0; padding: 0 12px; border-radius: 5px; font-size: 13px; }
+
+.gnurt-button--primary {
+    color: #ffffff;
+    -unity-font-style: bold;
+    background-color: var(--gn-accent);
+    border-color: var(--gn-accent);
+}
+
+.gnurt-button--primary:hover { background-color: var(--gn-accent-hover); }
+.gnurt-button--primary:disabled { opacity: 0.4; }
+
+/* ---------- Danh sách ---------- */
+
+.gnurt-list-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--gn-border);
+}
+
+.gnurt-list-row__text { margin-left: 10px; flex-shrink: 1; overflow: hidden; }
+.gnurt-list-row__title,
+.gnurt-list-row__subtitle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gnurt-list-row__title { font-size: 13px; color: var(--gn-text); padding: 0; }
+.gnurt-list-row__subtitle { margin-top: 1px; font-size: 11px; color: var(--gn-text-muted); padding: 0; }
+
+.gnurt-bullet { flex-direction: row; margin-top: 4px; }
+.gnurt-bullet__dot { width: 14px; color: var(--gn-accent-text); padding: 0; }
+.gnurt-bullet__text { flex-shrink: 1; color: var(--gn-text); white-space: normal; padding: 0; font-size: 13px; }
+
+.gnurt-kv { flex-direction: row; padding: 7px 0; border-bottom-width: 1px; border-bottom-color: var(--gn-border); }
+.gnurt-kv__key { width: 140px; flex-shrink: 0; color: var(--gn-text-muted); padding: 0; font-size: 13px; }
+.gnurt-kv__value { flex-shrink: 1; color: var(--gn-text); white-space: normal; padding: 0; font-size: 13px; }
+
+/* ---------- Icon ---------- */
+
+.gnurt-icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--gn-text-muted); }
+.gnurt-nav-item .gnurt-icon { margin-right: 10px; }
+.gnurt-nav-item:hover .gnurt-icon { color: var(--gn-text); }
+.gnurt-nav-item--selected .gnurt-icon,
+.gnurt-nav-item--selected:hover .gnurt-icon { color: var(--gn-accent-text); }
+
+/* ---------- Foldout và ô nhập ---------- */
+
+.gnurt-foldout { margin-top: 8px; }
+.gnurt-foldout .unity-foldout__text { color: var(--gn-text-muted); font-size: 13px; }
+.gnurt-field { margin: 0 0 8px 0; }
