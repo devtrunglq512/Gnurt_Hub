@@ -165,7 +165,7 @@ Ngoài ra Editor kiểm tra lại online định kỳ (ví dụ 7 ngày một l�
 |---|---|---|
 | 0 | Khung repo: project Unity, git + luật LFS, hai package, các asmdef, tài liệu này | ✅ |
 | 1 | Core bản tối thiểu: `GLog`, `MainThread`, `EventBus`, `Observable`, `Services`/`GnurtService`, `Singleton`, bộ UI Editor (`GnurtWindow`, `Loc`, `GnurtUI`), `PackageOps`, EditMode test, `Tools/compile_check.sh` | ✅ (chưa tag `core/v0.1.0`) |
-| 2 | Hub cho package miễn phí: Bootstrap cài core, catalog, cài/update/gỡ qua git, kênh phát hành/dev, bản local | ✅ (chưa tag `hub/v0.1.0`) |
+| 2 | Hub cho package miễn phí: Bootstrap cài core, catalog, cài/update/gỡ qua git, kênh phát hành/dev, bản local | ✅ 78 test + E2E cài thật từ GitHub đạt trên 2022.3 và 6000.3 (chưa tag `hub/v0.1.0`) |
 | 3 | Theo thứ tự: 3a server Cloudflare (D1 schema, API kích hoạt / quyền / tải file / admin) → 3b web admin → 3c Hub nhập key và cài tgz | |
 | 4 | FirebaseManager: service có key đầu tiên, build DLL, CI build tgz | |
 | 5 | SDK ads/analytics (repo Gnurt_Sdk) | |
