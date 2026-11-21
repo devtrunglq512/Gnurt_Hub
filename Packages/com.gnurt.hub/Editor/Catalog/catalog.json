@@ -29,15 +29,15 @@
     },
     {
       "name": "com.gnurt.logicmap",
-      "displayName": "LogicMap",
-      "descriptionEn": "In development.",
-      "descriptionVi": "Đang phát triển.",
+      "displayName": "Gnurt LogicMap",
+      "descriptionEn": "Draws the game's structure as read-only flow charts (Gnurt > LogicMap): scenes or prefabs, each map or minigame, and which script loads which scene.",
+      "descriptionVi": "Vẽ cấu trúc game thành flow chart chỉ để xem (Gnurt > LogicMap): chia theo scene hay prefab, từng map hay minigame, script nào load scene nào.",
       "repo": "https://github.com/devtrunglq512/Gnurt_LogicMap.git",
       "path": "/Packages/com.gnurt.logicmap",
       "tagPrefix": "",
       "dependencies": ["com.gnurt.core"],
       "minUnity": "2022.3",
-      "planned": true,
+      "planned": false,
       "licensed": false
     },
     {

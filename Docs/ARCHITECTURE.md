@@ -115,7 +115,12 @@ Cả hai đều public. Các package có thu phí nằm ở repo riêng (xem m�
 
 ## 5. License cho package có thu phí
 
-**Server:** Cloudflare Workers + D1 (SQL) + R2 (lưu tgz, không tính phí băng thông tải xuống). API viết bằng TypeScript + Hono, chạy trên **domain riêng** để sau này đổi nhà cung cấp mà Hub đã cài ở máy đối tác không bị hỏng.
+**Server:** Cloudflare Workers + D1 (SQL) + R2 (lưu tgz, không tính phí băng thông tải xuống). API viết bằng TypeScript + Hono, chạy trên **domain riêng** để sau này đổi nhà cung cấp mà Hub đã cài ở máy đối tác không bị hỏng. Code ở repo private `Gnurt_Api`.
+
+**Tên miền:** `gnurtstudio.com` (mua ở Cloudflare Registrar, 2026-11-21).
+- `api.gnurtstudio.com`: API license cho Hub. Hub nhớ cứng địa chỉ này.
+- `admin.gnurtstudio.com`: web admin, bảo vệ bằng Cloudflare Access.
+- `gnurtstudio.com`: để dành cho trang giới thiệu.
 
 **Dữ liệu**
 

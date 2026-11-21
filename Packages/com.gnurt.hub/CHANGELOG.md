@@ -7,3 +7,4 @@
 - Kênh cập nhật: Phát hành (tag `core/vX`, `hub/vX`) hoặc Dev (nhánh). Hub cài từ nhánh thì kênh Dev tự bật.
 - Bản local: chuyển package sang thư mục repo trên máy để sửa và thử ngay, rồi chuyển lại git.
 - Bootstrap: project chưa có `com.gnurt.core` thì tự cài từ cùng repo và cùng nhánh/tag với Hub.
+- Catalog: mở `com.gnurt.logicmap` (Gnurt LogicMap), cài được qua git.
